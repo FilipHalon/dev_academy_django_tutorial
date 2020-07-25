@@ -30,6 +30,13 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+"""
+Stworzyć DJANGO_APPS = (wszystkie django i drf)
+oraz MY_APPS = (example itd)
+i umieścić to w INSTALLED_APPS = DJANGO_APPS + MY_APPS
+W większych aplikacjach tworzyć się też osobny folder settings (__init__.py itd.)
+"""
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,7 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'django_filters',
     'example',
+    'bootstrap3',
+    'library',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +131,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend", ),
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 1,
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated", )
+}

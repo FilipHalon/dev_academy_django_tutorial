@@ -1,10 +1,30 @@
+{% load bootstrap3 %}
+{% bootstrap_css %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    {% block title %}
+        <title>Index</title>
+    {% endblock %}
 </head>
 <body>
-$END$
+    {% block content %}
+        <h1>Movie App</h1>
+        <div class="panel panel-default">
+            <div class="panel-heading">Lista filmów</div>
+            <div class="panel-heading">Ilość filmów {{movies|length}}</div>
+
+            <div class="panel-body">
+                <ol>
+                    {% for movie in movies %}
+                        <li>{{movie.name|upper}}</li>
+                        <li>{{movie.created_on|date:'Y-m-d'}}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+    {% endblock %}
 </body>
 </html>
